@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Prompt3D: Random Prompt Assisted Weakly-Supervised 3D Object Detection">
+  <meta name="keywords" content="reconstruction, semantic, avatar, texture">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt3D: Random Prompt Assisted Weakly-Supervised 3D Object Detection</title>
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="#" rel="external nofollow noopener" target="_blank">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+    </div>
+
+  </div>
+</nav> -->
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Prompt3D: Random Prompt Assisted Weakly-Supervised 3D Object Detection</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=M5WXeKwAAAAJ" rel="external nofollow noopener" target="_blank">Xiaohong Zhang</a>,</span>
+            <span class="author-block">
+              Huisheng Ye,</span>
+            <span class="author-block">
+              Jingwen Li,</span>
+            <span class="author-block">
+              Qinyu Tang,</span>
+            </span>
+            <span class="author-block">
+              <a href="http://www.njumeta.com/liyq/" rel="external nofollow noopener" target="_blank">Yuanqi Li</a>,</span>
+            </span>
+            <span class="author-block">
+              <a href="https://cs.nju.edu.cn/ywguo/index.htm"  rel="external nofollow noopener" target="_blank">Yanwen Guo</a><sup>*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com.hk/citations?user=Sx4PQpQAAAAJ&hl=en" rel="external nofollow noopener" target="_blank">Jie Guo</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Nanjing University</span>
+            <!-- <span class="author-block"><sup>2</sup>Texas A&M University</span> -->
+          </div>
+
+          <h1 style="font-size:24px;font-weight:bold">CVPR 2024</h1>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#" rel="external nofollow noopener" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper (Coming soon)</span>
+                </a>
+              </span>
+              <!-- Arxiv Link. -->
+              <span class="link-block">
+                <a href="#" rel="external nofollow noopener" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv (Coming soon)</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="#" rel="external nofollow noopener" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video (Coming soon)</span>
+                </a>
+              </span> -->
+              <!-- Supp Link. -->
+              <span class="link-block">
+                <a href="#" rel="external nofollow noopener" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg><!-- <i class="fas fa-file-pdf"></i> Font Awesome fontawesome.com -->
+                  </span>
+                  <span>Supp (Coming soon)</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="#" rel="external nofollow noopener" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming soon)</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The prohibitive cost of annotations for fully supervised 3D indoor object detection limits its practicality. In this work, we propose Random Prompt Assisted Weakly-supervised 3D Object Detection, termed as Prompt3D, a weakly-supervised approach that leverages position-level labels to overcome this challenge. Explicitly, our method focuses on enhancing labeling using synthetic scenes crafted from 3D shapes generated via random prompts. First, a Synthetic Scene Generation (SSG) module is introduced to assemble synthetic scenes with a curated collection of 3D shapes, created via random prompts for each category. These scenes are enriched with automatically generated point-level annotations, providing a robust supervisory framework for training the detection algorithm. To enhance the transfer of knowledge from virtual to real datasets, we then introduce a Prototypical Proposal Feature Alignment (PPFA) module. This module effectively alleviates the domain gap by directly minimizing the distance between feature prototypes of the same class proposals across two domains. Compared with sota BR, our method improves by 5.4% and 8.7% on mAP with VoteNet and GroupFree3D serving as detectors respectively, demonstrating the effectiveness of our proposed method.
+          </p>
+		    <!-- <img src="./static/videos/pic1.png" width="60%" alt="Italian Trulli"> -->
+        </div>
+        <div style="text-align:center;">
+          <img src="./static/images/detection_result.png" width="100%" alt="teaser">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-three-fifths">
+        <h2 class="title is-3">Pipeline</h2>
+        <div class="content has-text-justified">
+          <img src="./static/images/pipeline.png" alt="pipeline">
+          </p>  
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Framework</h2>
+        <div class="content has-text-justified">
+          <img src="./static/images/framework.png" alt="Framework">
+          </p>  
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="section">-->
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered"> 
+
+      
+    <!-- Concurrent Work. -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <a href="https://icon.is.tue.mpg.de/">[CVPR 2022] ICON: Implicit Clothed humans Obtained from Normals</a>
+          </p>
+          <p>
+            <a href="https://xiuyuliang.cn/econ/">[CVPR 2023] ECON: Explicit Clothed humans Obtained from Normals</a>
+          </p>
+          <p>
+            <a href="https://github.com/ZhengZerong/PaMIR">PaMIR: Parametric Model-Conditioned Implicit Representation for Image-based Human Reconstruction</a>
+          </p>
+          <p>
+            <a href="https://shunsukesaito.github.io/PIFuHD/">PIFuHD: Multi-Level Pixel-Aligned Implicit Function for High-Resolution 3D Human Digitization</a>, and <a href="https://shunsukesaito.github.io/PIFu/">PIFu: Pixel-Aligned Implicit Function for
+              High-Resolution Clothed Human Digitization</a>.
+          </p>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Concurrent Work. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-3">Acknowledgements</h3>
+        <div class="content has-text-justified">
+          <p>
+            This work was supported by the National Natural Science Foundation of China under Grant numbers 62032011.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+@inproceedings{zhang2024prompt3d,
+  title     = {Prompt3D: Random Prompt Assisted Weakly-Supervised 3D Object Detection},
+  author    = {Xiaohong Zhang, Huisheng Ye, Jingwen Li, Qinyu Tang, Yuanqi Li, Yanwen Guo, Jie Guo},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2024},
+}
+  </code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- <a class="icon-link"
+         href="">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a> -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This webpage template was borrowed from <a rel="license" href="https://yxt7979.github.io/idf/" rel="external nofollow noopener" target="_blank">D-IF</a>. It is
+            licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/" rel="external nofollow noopener" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
